@@ -6,7 +6,7 @@ const readFilePromised = attachment =>
     fs.readFile(attachment.file, (err, data) => {
       if (err) reject(err);
       resolve({
-        file: Buffer.from(data).toString('base64'),
+        content: Buffer.from(data).toString('base64'),
         name: attachment.name,
       });
     });
