@@ -11,3 +11,18 @@ test('Should send mail without attachments', async t => {
     t.pass();
   });
 });
+
+test('Should send mail with attachments', async t => {
+  await Pigeon.deliver('invitation-mail-new-user', {
+    to: 'rajat@keepworks.com',
+    attachments: [
+      {
+        file: __dirname + '/../.eslintrc',
+        name: 'eslint',
+      },
+    ],
+  }).then(result => {
+    console.log(result.body);
+    t.pass();
+  });
+});
