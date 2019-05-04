@@ -1,4 +1,7 @@
 {
   "extends": "eslint-config-airbnb-base",
-  "plugins": ["eslint-plugin-prettier", "eslint-plugin-import"]
+  "plugins": ["eslint-plugin-prettier", "eslint-plugin-import"],
+  "rules": {
+    "arrow-parens": 0
+  }
 }
