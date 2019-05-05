@@ -6,6 +6,9 @@ _Pigeon Node.js SDK_
   <a href="https://github.com/prettier/prettier">
         <img src="https://img.shields.io/badge/code_style-prettier-ff69b4.svg" alt="prettier"/>
   </a>
+  <a href="/LICENSE">
+    <img src="https://badgen.net/badge/license/MIT/blue" alt="license"/>
+  </a>
 </p>
 
 ## Usage
@@ -34,7 +37,7 @@ Pigeon.deliver('message-identifier', {
 })
   .then(() => console.log('Mail Sent'))
   .catch(e => {
-    console.log('Failed in sending mail, more:', e);
+    console.log('Failed to send mail, more:', e);
   });
 ```
 
@@ -47,7 +50,26 @@ Pigeon.deliver('message-identifier', {
 })
   .then(() => console.log('Mail Sent'))
   .catch(e => {
-    console.log('Failed in sending mail, more:', e);
+    console.log('Failed to send mail, more:', e);
+  });
+```
+
+#### Multiple mails
+
+```javascript
+Pigeon.deliver('message-identifier', [
+  {
+    to: 'John Doe <john@example.com>',
+    data: { greet: 'Hi John' },
+  },
+  {
+    to: 'Jane Doe <jane@example.com>',
+    data: { greet: 'Hi Jane' },
+  },
+])
+  .then(() => console.log('Mail Sent'))
+  .catch(e => {
+    console.log('Failed to send mail, more:', e);
   });
 ```
 
@@ -65,7 +87,7 @@ Pigeon.deliver('message-identifier', {
 })
   .then(() => console.log('Mail Sent'))
   .catch(e => {
-    console.log('Failed in sending mail, more:', e);
+    console.log('Failed to send mail, more:', e);
   });
 ```
 
