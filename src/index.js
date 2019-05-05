@@ -22,7 +22,7 @@ const createClient = ({
   baseUri = process.env.PIGEON_BASE_URI || 'https://api.pigeonapp.io/v1',
   publicKey = process.env.PIGEON_PUBLIC_KEY,
   privateKey = process.env.PIGEON_PRIVATE_KEY,
-}) => {
+} = {}) => {
   function deliver(messageIdentifier, parcels) {
     const multipleParcels = Array.isArray(parcels) ? parcels : [parcels];
     return Promise.all(multipleParcels.map(parcel => processAttachments(parcel))).then(finalParcels =>
