@@ -11,10 +11,10 @@ _Pigeon Node.js SDK_
 ## Usage
 
 ```javascript
-const pigeonsdk = require('pigeon-node');
+const { createClient } = require('pigeon-node');
 
 // Initialize Pigeon SDK
-const Pigeon = pigeonsdk({
+const Pigeon = createClient({
   publicKey: process.env.PIGEON_PUBLIC_KEY,
   privateKey: process.env.PIGEON_PRIVATE_KEY,
 });

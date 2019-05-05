@@ -18,23 +18,32 @@ const processAttachments = ({ attachments = [], ...otherParcels }) =>
     ...otherParcels,
   }));
 
-module.exports = ({ publicKey, privateKey }) => {
+const createClient = ({
+  baseUri = process.env.PIGEON_BASE_URI || 'https://api.pigeonapp.io/v1',
+  publicKey = process.env.PIGEON_PUBLIC_KEY,
+  privateKey = process.env.PIGEON_PRIVATE_KEY,
+}) => {
   function deliver(messageIdentifier, parcels) {
-    return processAttachments(parcels).then(processedParcels =>
-      http.post(process.env.API_URL || 'https://api.pigeonapp.io/v1/deliveries', {
+    const multipleParcels = Array.isArray(parcels) ? parcels : [parcels];
+    return Promise.all(multipleParcels.map(parcel => processAttachments(parcel))).then(finalParcels =>
+      http.post(`${baseUri}/deliveries`, {
         headers: {
-          'user-agent': 'pigeon-node-sdk',
+          'User-Agent': 'pigeon-node',
           'X-Public-Key': publicKey,
           'X-Private-Key': privateKey,
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
           message_identifier: messageIdentifier,
-          parcels: processedParcels,
+          parcels: finalParcels,
         }),
       }),
     );
   }
 
   return { deliver };
+};
+
+module.exports = {
+  createClient,
 };
