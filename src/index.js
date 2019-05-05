@@ -12,11 +12,12 @@ const readFilePromised = attachment =>
     });
   });
 
-const processAttachments = ({ attachments = [], ...otherParcels }) =>
-  Promise.all(attachments.map(readFilePromised)).then(processedAttachments => ({
-    attachments: processedAttachments,
-    ...otherParcels,
-  }));
+const processAttachments = parcel =>
+  Promise.all(parcel.attachments.map(readFilePromised)).then(processedAttachments =>
+    Object.assign({}, parcel, {
+      attachments: processedAttachments,
+    }),
+  );
 
 const createClient = ({
   baseUri = process.env.PIGEON_BASE_URI || 'https://api.pigeonapp.io/v1',

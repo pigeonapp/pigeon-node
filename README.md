@@ -26,6 +26,15 @@ const Pigeon = createClient({
 Pigeon.deliver('message-identifier', { to: 'john@example.com' }).then(_ => console.log('Mail Sent'));
 ```
 
+Can also be initialised with no parameters, `pigeon-node` will look for these env variables `PIGEON_PUBLIC_KEY` and `PIGEON_PRIVATE_KEY`.
+
+```javascript
+const { createClient } = require('pigeon-node');
+
+// Initialize Pigeon SDK
+const Pigeon = createClient();
+```
+
 ## Examples
 
 #### Multiple recipients
