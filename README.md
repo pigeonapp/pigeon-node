@@ -43,11 +43,7 @@ const Pigeon = createClient();
 Pigeon.deliver('message-identifier', {
   to: 'John Doe <john@example.com>',
   cc: ['admin@example.com', 'sales@example.com>'],
-})
-  .then(() => console.log('Mail Sent'))
-  .catch(e => {
-    console.log('Failed to send mail, more:', e);
-  });
+});
 ```
 
 #### Template variables
@@ -56,11 +52,7 @@ Pigeon.deliver('message-identifier', {
 Pigeon.deliver('message-identifier', {
   to: 'john@example.com',
   data: { name: 'John' },
-})
-  .then(() => console.log('Mail Sent'))
-  .catch(e => {
-    console.log('Failed to send mail, more:', e);
-  });
+});
 ```
 
 #### Multiple mails
@@ -75,11 +67,7 @@ Pigeon.deliver('message-identifier', [
     to: 'Jane Doe <jane@example.com>',
     data: { greet: 'Hi Jane' },
   },
-])
-  .then(() => console.log('Mail Sent'))
-  .catch(e => {
-    console.log('Failed to send mail, more:', e);
-  });
+]);
 ```
 
 #### Attachment support
@@ -93,11 +81,18 @@ Pigeon.deliver('message-identifier', {
       name: 'Handbook',
     },
   ],
+});
+```
+
+#### Use with `then/catch`
+
+```javascript
+Pigeon.deliver('message-identifier', {
+  to: 'John Doe <john@example.com>',
+  cc: ['admin@example.com', 'sales@example.com>'],
 })
-  .then(() => console.log('Mail Sent'))
-  .catch(e => {
-    console.log('Failed to send mail, more:', e);
-  });
+  .then(() => console.log('Mail sent successfully'))
+  .catch(e => console.log('Something went wrong', e));
 ```
 
 #### Use with `async/await`
