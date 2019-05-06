@@ -84,15 +84,21 @@ pigeon.deliver('message-identifier', {
 });
 ```
 
-#### Use with `then/catch`
+#### Use as `promise`
+
+`pigeon.deliver` returns a promise so you can chain other tasks after successfully sending mail.
 
 ```javascript
-pigeon
-  .deliver('message-identifier', {
-    to: 'John Doe <john@example.com>',
-    cc: ['admin@example.com', 'sales@example.com>'],
+const promise = pigeon.deliver('message-identifier', {
+  to: 'John Doe <john@example.com>',
+  cc: ['admin@example.com', 'sales@example.com>'],
+});
+
+promise
+  .then(() => {
+    console.log('Mail sent successfully');
+    doSomething();
   })
-  .then(() => console.log('Mail sent successfully'))
   .catch(e => console.log('Something went wrong', e));
 ```
 

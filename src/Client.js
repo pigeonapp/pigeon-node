@@ -38,7 +38,8 @@ module.exports = class Client {
   deliver(messageIdentifier, parcels) {
     const processedParcels = Array.isArray(parcels) ? parcels : [parcels];
     return Promise.all(processedParcels.map(parcel => processAttachments(parcel))).then(finalParcels =>
-      http.post(`${this.baseUri}/deliveries`, {
+      http.post(`/deliveries`, {
+        baseUrl: this.baseUri,
         headers: {
           'User-Agent': 'pigeon-node',
           'X-Public-Key': this.publicKey,
