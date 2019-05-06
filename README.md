@@ -14,25 +14,25 @@ _Pigeon Node.js SDK_
 ## Usage
 
 ```javascript
-const { createClient } = require('pigeon-node');
+const Pigeon = require('pigeon-node');
 
 // Initialize Pigeon SDK
-const Pigeon = createClient({
+const pigeon = Pigeon.createClient({
   publicKey: process.env.PIGEON_PUBLIC_KEY,
   privateKey: process.env.PIGEON_PRIVATE_KEY,
 });
 
 // Start sending messages
-Pigeon.deliver('message-identifier', { to: 'john@example.com' }).then(_ => console.log('Mail Sent'));
+pigeon.deliver('message-identifier', { to: 'john@example.com' }).then(_ => console.log('Mail Sent'));
 ```
 
 Can also be initialised with no parameters, `pigeon-node` will look for these env variables `PIGEON_PUBLIC_KEY` and `PIGEON_PRIVATE_KEY`.
 
 ```javascript
-const { createClient } = require('pigeon-node');
+const Pigeon = require('pigeon-node');
 
 // Initialize Pigeon SDK
-const Pigeon = createClient();
+const pigeon = Pigeon.createClient();
 ```
 
 ## Examples
@@ -40,7 +40,7 @@ const Pigeon = createClient();
 #### Multiple recipients
 
 ```javascript
-Pigeon.deliver('message-identifier', {
+pigeon.deliver('message-identifier', {
   to: 'John Doe <john@example.com>',
   cc: ['admin@example.com', 'sales@example.com>'],
 });
@@ -49,7 +49,7 @@ Pigeon.deliver('message-identifier', {
 #### Template variables
 
 ```javascript
-Pigeon.deliver('message-identifier', {
+pigeon.deliver('message-identifier', {
   to: 'john@example.com',
   data: { name: 'John' },
 });
@@ -58,7 +58,7 @@ Pigeon.deliver('message-identifier', {
 #### Multiple mails
 
 ```javascript
-Pigeon.deliver('message-identifier', [
+pigeon.deliver('message-identifier', [
   {
     to: 'John Doe <john@example.com>',
     data: { greet: 'Hi John' },
@@ -73,7 +73,7 @@ Pigeon.deliver('message-identifier', [
 #### Attachment support
 
 ```javascript
-Pigeon.deliver('message-identifier', {
+pigeon.deliver('message-identifier', {
   to: 'jane@example.com',
   attachments: [
     {
@@ -87,10 +87,11 @@ Pigeon.deliver('message-identifier', {
 #### Use with `then/catch`
 
 ```javascript
-Pigeon.deliver('message-identifier', {
-  to: 'John Doe <john@example.com>',
-  cc: ['admin@example.com', 'sales@example.com>'],
-})
+pigeon
+  .deliver('message-identifier', {
+    to: 'John Doe <john@example.com>',
+    cc: ['admin@example.com', 'sales@example.com>'],
+  })
   .then(() => console.log('Mail sent successfully'))
   .catch(e => console.log('Something went wrong', e));
 ```
@@ -100,7 +101,7 @@ Pigeon.deliver('message-identifier', {
 ```javascript
 (async () => {
   try {
-    await Pigeon.deliver('message-identifier', { to: 'john@example.com' });
+    await pigeon.deliver('message-identifier', { to: 'john@example.com' });
   } catch (error) {
     console.log(error);
   }
