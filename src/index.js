@@ -25,8 +25,8 @@ const createClient = ({
   privateKey = process.env.PIGEON_PRIVATE_KEY,
 } = {}) => {
   function deliver(messageIdentifier, parcels) {
-    const multipleParcels = Array.isArray(parcels) ? parcels : [parcels];
-    return Promise.all(multipleParcels.map(parcel => processAttachments(parcel))).then(finalParcels =>
+    const processedParcels = Array.isArray(parcels) ? parcels : [parcels];
+    return Promise.all(processedParcels.map(parcel => processAttachments(parcel))).then(finalParcels =>
       http.post(`${baseUri}/deliveries`, {
         headers: {
           'User-Agent': 'pigeon-node',
