@@ -2,10 +2,9 @@
   "extends": ["eslint-config-airbnb-base", "eslint-config-prettier"],
   "plugins": ["eslint-plugin-prettier", "eslint-plugin-import"],
   "rules": {
-    "arrow-parens": 0,
     "global-require": 0,
     "no-unused-vars": ["error", { "argsIgnorePattern": "^_", "varsIgnorePattern": "^_" }],
-    "prefer-template": 0,
-    "no-path-concat": 0
+    "no-path-concat": 0,
+    "quotes": ["error", "single"]
   }
 }
