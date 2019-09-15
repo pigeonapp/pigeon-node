@@ -1,6 +1,6 @@
 {
   "name": "pigeon-node",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Pigeon NodeJs SDK",
   "main": "src/index.js",
   "repository": "https://github.com/pigeonapp/pigeon-node",
