@@ -35,9 +35,8 @@ module.exports = class Client {
     this.privateKey = privateKey;
   }
 
-  deliver(messageIdentifier, parcels) {
-    const processedParcels = Array.isArray(parcels) ? parcels : [parcels];
-    return Promise.all(processedParcels.map(parcel => processAttachments(parcel))).then(finalParcels =>
+  deliver(messageIdentifier, parcel) {
+    return processAttachments(parcel).then(finalParcel =>
       http.post('/deliveries', {
         baseUrl: this.baseUri,
         headers: {
@@ -48,7 +47,7 @@ module.exports = class Client {
         },
         body: JSON.stringify({
           message_identifier: messageIdentifier,
-          parcels: finalParcels,
+          ...finalParcel,
         }),
       }),
     );

@@ -55,21 +55,6 @@ pigeon.deliver('message-identifier', {
 });
 ```
 
-#### Multiple mails
-
-```javascript
-pigeon.deliver('message-identifier', [
-  {
-    to: 'John Doe <john@example.com>',
-    data: { greet: 'Hi John' },
-  },
-  {
-    to: 'Jane Doe <jane@example.com>',
-    data: { greet: 'Hi Jane' },
-  },
-]);
-```
-
 #### Attachment support
 
 ```javascript

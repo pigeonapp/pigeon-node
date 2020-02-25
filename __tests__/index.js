@@ -18,7 +18,7 @@ test('Should send mail with attachments', async t => {
     to: 'rajat@keepworks.com',
     attachments: [
       {
-        file: __dirname + '/../.eslintrc',
+        file: `${__dirname}/../.eslintrc`,
         name: 'eslint',
       },
     ],
@@ -33,7 +33,7 @@ test('Should send multiple parcels', async t => {
       to: 'rajat@keepworks.com',
       attachments: [
         {
-          file: __dirname + '/../.eslintrc',
+          file: `${__dirname}/../.eslintrc`,
           name: 'eslint',
         },
       ],
@@ -42,7 +42,7 @@ test('Should send multiple parcels', async t => {
       to: 'admin@keepworks.com',
       attachments: [
         {
-          file: __dirname + '/../.eslintrc',
+          file: `${__dirname}/../.eslintrc`,
           name: 'eslint',
         },
       ],
