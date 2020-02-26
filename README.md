@@ -4,7 +4,7 @@ _Pigeon Node.js SDK_
 
 <p>
   <a href="https://github.com/prettier/prettier">
-        <img src="https://img.shields.io/badge/code_style-prettier-ff69b4.svg" alt="prettier"/>
+    <img src="https://img.shields.io/badge/code_style-prettier-ff69b4.svg" alt="prettier"/>
   </a>
   <a href="/LICENSE">
     <img src="https://badgen.net/badge/license/MIT/blue" alt="license"/>
@@ -26,7 +26,7 @@ const pigeon = Pigeon.createClient({
 pigeon.deliver('message-identifier', { to: 'john@example.com' }).then(_ => console.log('Mail Sent'));
 ```
 
-Can also be initialised with no parameters, `pigeon-node` will look for these env variables `PIGEON_PUBLIC_KEY` and `PIGEON_PRIVATE_KEY`.
+Can also be initialized with no parameters, `pigeon-node` will look for these env variables `PIGEON_PUBLIC_KEY` and `PIGEON_PRIVATE_KEY`.
 
 ```javascript
 const Pigeon = require('pigeon-node');
@@ -53,21 +53,6 @@ pigeon.deliver('message-identifier', {
   to: 'john@example.com',
   data: { name: 'John' },
 });
-```
-
-#### Multiple mails
-
-```javascript
-pigeon.deliver('message-identifier', [
-  {
-    to: 'John Doe <john@example.com>',
-    data: { greet: 'Hi John' },
-  },
-  {
-    to: 'Jane Doe <jane@example.com>',
-    data: { greet: 'Hi Jane' },
-  },
-]);
 ```
 
 #### Attachment support
