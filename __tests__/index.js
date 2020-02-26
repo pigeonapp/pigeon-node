@@ -26,28 +26,3 @@ test('Should send mail with attachments', async t => {
     t.pass();
   });
 });
-
-test('Should send multiple parcels', async t => {
-  await Pigeon.deliver('invitation-mail-new-user', [
-    {
-      to: 'rajat@keepworks.com',
-      attachments: [
-        {
-          file: `${__dirname}/../.eslintrc`,
-          name: 'eslint',
-        },
-      ],
-    },
-    {
-      to: 'admin@keepworks.com',
-      attachments: [
-        {
-          file: `${__dirname}/../.eslintrc`,
-          name: 'eslint',
-        },
-      ],
-    },
-  ]).then(() => {
-    t.pass();
-  });
-});
